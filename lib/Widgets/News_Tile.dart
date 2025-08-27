@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/Models/article_model.dart';
 
 class NewsTile extends StatelessWidget {
-  const NewsTile({super.key});
-
+  const NewsTile({super.key, required this.articleModel});
+  final ArticleModel articleModel;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -11,7 +12,11 @@ class NewsTile extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
-              image: AssetImage('Assets/Image/null.png'),
+              image:
+                  (articleModel.image != null &&
+                          articleModel.image!.isNotEmpty)
+                      ? NetworkImage(articleModel.image!)
+                      : AssetImage('Assets/Image/null.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -19,7 +24,8 @@ class NewsTile extends StatelessWidget {
           width: double.infinity,
         ),
         Text(
-          'sdlfdjsdljflsjflsjfيسسيسسسيسسييسسسسسسسسسسيسيسيسيسيسيسssdsdsdsdsdsdsddsdssdsdsdcscxxsdffxsszxcvbfdddjfkdjfjdd',
+          textDirection: TextDirection.rtl,
+          articleModel.title,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
@@ -28,7 +34,8 @@ class NewsTile extends StatelessWidget {
           ),
         ),
         Text(
-          'sdlfdjsdljflsjflsjfيسسيسسسيسسييسسسسسسسسسسيسيdsdcsxxsdffvdسيسيسيسيسssdsdsdsdsdsdsddsdssdsdsdcscxxsdffxsszxcvbfdddjfkdjfjdd',
+          textDirection: TextDirection.rtl,
+          articleModel.description ?? '',
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(

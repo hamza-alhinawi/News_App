@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/Widgets/News_List_View.dart';
 import 'package:news_app/Widgets/category_list_view.dart';
+import 'package:news_app/Widgets/news_list_view_bulider.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -9,6 +9,8 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        shadowColor: Colors.transparent,
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -39,14 +41,13 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.only(
           left: 10,
           right: 10,
-          top: 10
+          top: 10,
         ),
         child: CustomScrollView(
           slivers: [
-            
             SliverToBoxAdapter(child: CategoryListView()),
             SliverToBoxAdapter(child: SizedBox(height: 30)),
-            NewsListView(),
+            NewsListViewBuilder(),
           ],
         ),
       ),
