@@ -7,7 +7,8 @@ import 'package:news_app/Widgets/News_List_View.dart';
 import 'package:news_app/Widgets/refresh_indicator.dart';
 
 class NewsListViewBuilder extends StatefulWidget {
-  const NewsListViewBuilder({super.key});
+  const NewsListViewBuilder({super.key, required this.q});
+  final String q;
 
   @override
   State<NewsListViewBuilder> createState() =>
@@ -16,12 +17,12 @@ class NewsListViewBuilder extends StatefulWidget {
 
 class _NewsListViewBuilderState
     extends State<NewsListViewBuilder> {
-  Future<List<ArticleModel>> future = Future.value([]);
+  Future<List<ResultModel>> future = Future.value([]);
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    future = NewsServices(Dio()).getNews();
+    future = NewsServices(Dio()).getNews(q: widget.q);
     setState(() {});
   }
 
@@ -39,23 +40,11 @@ class _NewsListViewBuilderState
             child: SizedBox(
               height:
                   MediaQuery.sizeOf(context).height - 300,
-              child: Center(child: RefreshIndicator()),
+              child: Center(child: RefreshIndicatorCircl()),
             ),
           );
         }
       },
     );
-    // return isLoading
-    //     ? SliverToBoxAdapter(
-    //       child: SizedBox(
-    //         height: MediaQuery.sizeOf(context).height - 300,
-    //         child: Center(
-    //           child: RefreshProgressIndicator(),
-    //         ),
-    //       ),
-    //     )
-    //     : articles.isNotEmpty
-    //     ? NewsListView(articles: articles)
-    //     : Text('nhnhmhmhnhnhnhnhnh');
   }
 }

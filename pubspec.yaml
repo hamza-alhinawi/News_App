@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  liquid_pull_to_refresh: ^3.0.1
+  cached_network_image: ^3.4.1
   dio: ^5.9.0
   flutter:
     sdk: flutter
@@ -35,6 +37,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  webview_flutter: ^4.13.0
+  webview_flutter_android: ^4.10.1
+  webview_flutter_wkwebview: ^3.23.0
+  pull_to_refresh_flutter3: ^2.0.2
 
 dev_dependencies:
   flutter_test:
